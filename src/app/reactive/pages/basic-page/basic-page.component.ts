@@ -2,7 +2,6 @@ import { JsonPipe } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import {
   FormBuilder,
-  FormControl,
   FormGroup,
   ReactiveFormsModule,
   Validators,
@@ -15,7 +14,7 @@ import { FormUtils } from '../../../utils/form-utils';
   templateUrl: './basic-page.component.html',
 })
 export class BasicPageComponent {
-  formBuilder = inject(FormBuilder);
+  private formBuilder = inject(FormBuilder);
 
   formUtils = FormUtils;
 
