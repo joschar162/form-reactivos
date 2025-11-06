@@ -7,6 +7,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+import { FormUtils } from '../../../utils/form-utils';
 
 @Component({
   selector: 'app-dynamic-page',
@@ -15,6 +16,8 @@ import {
 })
 export class DynamicPageComponent {
   private formBuilder = inject(FormBuilder);
+
+  formUtils = FormUtils;
 
   myForm: FormGroup = this.formBuilder.group({
     name: ['', [Validators.required, Validators.minLength(3)]],
@@ -30,4 +33,10 @@ export class DynamicPageComponent {
   get favoriteGames() {
     return this.myForm.get('favoriteGames') as FormArray;
   }
+
+  // isValidFielArray(formArray: FormArray, index: number): boolean {
+  //   return (
+  //     formArray.controls[index].invalid && formArray.controls[index].touched
+  //   );
+  // }
 }
