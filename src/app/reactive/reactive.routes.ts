@@ -3,23 +3,23 @@ import { BasicPageComponent } from './pages/basic-page/basic-page.component';
 import { DynamicPageComponent } from './pages/dynamic-page/dynamic-page.component';
 import { SwitchesPagesComponent } from './pages/switches-pages/switches-pages.component';
 
-export const countryRoutes: Routes = [
+export const reactiveRoutes: Routes = [
   {
     path: '',
     children: [
       {
         path: 'basic',
-        title: 'Básicos - Formularios Reactivos',
+        title: 'Básicos',
         component: BasicPageComponent,
       },
       {
         path: 'dynamic',
-        title: 'Dinámicos - Formularios Reactivos',
+        title: 'Dinámicos',
         component: DynamicPageComponent,
       },
       {
         path: 'switches',
-        title: 'Switches - Formularios Reactivos',
+        title: 'Switches',
         component: SwitchesPagesComponent,
       },
     ],
