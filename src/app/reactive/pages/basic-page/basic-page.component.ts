@@ -5,6 +5,7 @@ import {
   FormControl,
   FormGroup,
   ReactiveFormsModule,
+  Validators,
 } from '@angular/forms';
 
 @Component({
@@ -16,9 +17,9 @@ export class BasicPageComponent {
   formBuilder = inject(FormBuilder);
 
   myForm = this.formBuilder.group({
-    name: [''],
-    price: [0],
-    inStorage: [0],
+    name: ['', [Validators.required, Validators.minLength(3)]],
+    price: [0, [Validators.required, Validators.min(10)]],
+    inStorage: [0, [Validators.required, Validators.min(10)]],
   });
 
   // myForm = new FormGroup({
