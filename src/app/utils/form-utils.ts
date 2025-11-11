@@ -5,6 +5,14 @@ import {
   ValidationErrors,
 } from '@angular/forms';
 
+async function sleep() {
+  return new Promise((resolve) =>
+    setTimeout(() => {
+      resolve(true);
+    }, 2500)
+  );
+}
+
 export class FormUtils {
   // Expresiones regulares
   static namePattern = '^([a-zA-Z]+) ([a-zA-Z]+)$';
@@ -46,6 +54,17 @@ export class FormUtils {
       return value1 === value2 ? null : { passwordsNotEqual: true };
     };
   }
+
+  static async checkingIfEmailExists(
+    control: AbstractControl
+  ): Promise<ValidationErrors | null> {
+    await sleep();
+    const formValue = control.value;
+    if (formValue === 'hola@mundo.com') {
+      return { emailExists: true };
+    }
+    return null;
+  }
   static getTextError(errors: ValidationErrors) {
     for (const key of Object.keys(errors)) {
       switch (key) {
@@ -68,8 +87,11 @@ export class FormUtils {
 
           return `El valor ingresado no cumple con el formato requerido.`;
 
+        case 'emailExists':
+          return 'El correo electrónico ya está registrado.';
+
         default:
-          return 'Campo inválido.';
+          return 'Campo inválido. error desconocido: ' + key;
       }
     }
 
