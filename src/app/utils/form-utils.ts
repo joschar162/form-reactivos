@@ -65,6 +65,16 @@ export class FormUtils {
     }
     return null;
   }
+
+  static notStrider(control: AbstractControl): ValidationErrors | null {
+    const value = control.value?.trim().toLowerCase();
+
+    if (value === 'strider') {
+      return { notStrider: true };
+    }
+
+    return null;
+  }
   static getTextError(errors: ValidationErrors) {
     for (const key of Object.keys(errors)) {
       switch (key) {
@@ -89,6 +99,8 @@ export class FormUtils {
 
         case 'emailExists':
           return 'El correo electrónico ya está registrado.';
+        case 'notStrider':
+          return 'El nombre de usuario no puede ser "strider".';
 
         default:
           return 'Campo inválido. error desconocido: ' + key;
