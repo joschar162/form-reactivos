@@ -1,6 +1,11 @@
 import { FormArray, FormGroup, ValidationErrors } from '@angular/forms';
 
 export class FormUtils {
+  // Expresiones regulares
+  static namePattern = '^([a-zA-Z]+) ([a-zA-Z]+)$';
+  static emailPattern = '^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$';
+  static notOnlySpacesPattern = '^[a-zA-Z0-9]+$';
+
   static isValidField(form: FormGroup, fieldName: string): boolean | null {
     return (
       !!form.controls[fieldName].errors && form.controls[fieldName].touched
@@ -37,6 +42,21 @@ export class FormUtils {
           return `Mínimo ${errors['minlength'].requiredLength} caracteres.`;
         case 'min':
           return `El valor mínimo es ${errors['min'].min}.`;
+
+        case 'email':
+          return `El valor ingresado no es un correo válido.`;
+
+        case 'pattern':
+          if (errors['pattern'].requiredPattern === FormUtils.emailPattern)
+            return `El valor ingresado no es un correo válido.`;
+
+          if (errors['pattern'].requiredPattern === FormUtils.namePattern)
+            return `El valor ingresado debe ser de formato nombre y apellido.`;
+
+          return `El valor ingresado no cumple con el formato requerido.`;
+
+        default:
+          return 'Campo inválido.';
       }
     }
 
