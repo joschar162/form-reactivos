@@ -123,6 +123,11 @@
 
       <div class="row">
         <div class="col">
+          @if (myForm.errors) {
+          <span class="form-text text-danger">
+            las contraseñas deben de ser iguales
+          </span>
+          }
           <button class="btn btn-primary float-end" type="submit">Crear</button>
         </div>
       </div>
